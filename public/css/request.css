@@ -1,0 +1,80 @@
+label {
+  display: block;
+  text-align: left;
+  margin: 2px;
+}
+
+input[type="text"] {
+  width: 300px;
+  height: 2em;
+}
+.request-box {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.request-form ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.request-form li {
+  font-weight: bold;
+  margin: 10px auto;
+  justify-content: center;
+}
+
+.request-header {
+  width: 100%;
+}
+
+input[class="big-area"] {
+  height: 10em;
+}
+
+.agreement {
+  width: 1300px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: scroll;
+  background-color: lightgray;
+  margin-top: 10px;
+
+  border: 2px solid;
+  border-radius: 10px;
+}
+
+.request-form input {
+  border: 1px solid;
+  text-align: left;
+}
+
+.request-form input:focus {
+  background-color: lightblue;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.request-form span {
+  color: red;
+}
+
+.request-form button {
+  background-color: lightskyblue;
+  border: none;
+  font-size: 2em;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.request-form fieldset {
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
+.request-form legend {
+  font-size: 1.5em;
+}

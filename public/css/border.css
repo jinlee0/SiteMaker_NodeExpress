@@ -1,0 +1,15 @@
+html,
+body {
+  width: 100%;
+}
+header {
+  border: 1px solid;
+}
+
+ul {
+  border: 1px solid red;
+}
+
+li {
+  border: 1px solid yellow;
+}

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+<!---->
+{% block content %}
+<div class="logo__box"></div>
+
+<section class="section-box">
+  <h1>로그인</h1>
+  <hr />
+  <form class="common-form" method="post" action="/auth/login">
+    <ul class="common-form__list">
+      <li>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="이메일"
+        />
+      </li>
+      <li>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder="비밀번호"
+        />
+      </li>
+    </ul>
+    <button class="common-form__submit">로그인</button>
+    <a id="kakao" href="/auth/kakao" class="btn">카카오톡</a>
+  </form>
+
+  <div class="flex">
+    <a class="common-button" href="/join"> 회원가입 </a>
+    <a class="common-button" href="/findAccount"> 계정찾기 </a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,57 @@
+.main-table {
+  border-spacing: 10px 20px;
+}
+
+.member-table img {
+  display: inline;
+  width: 10rem;
+  border-radius: 50%;
+}
+
+.member-table p {
+  width: 55%;
+  text-align: center;
+}
+
+.member-table p:first-child {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.text-table * {
+  text-align: right;
+}
+
+.text-table tr:first-child p {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.button {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: yellow;
+  box-shadow: 4px 4px yellowgreen;
+  font-weight: bold;
+  transition: all 1s;
+}
+
+.button:hover {
+  padding: 15px;
+  background-color: white;
+  box-shadow: 6px 6px lightgray;
+  text-shadow: 3px 3px lightblue;
+  color: blue;
+}
+
+.request-table * {
+  text-align: left;
+}
+
+.member-table img {
+  transition: all 0.1s ease-in-out;
+}
+.member-table img:hover {
+  width: 60%;
+  border-radius: 10px;
+}

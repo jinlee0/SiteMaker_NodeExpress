@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+<!---->
+{% block content %}
+<div class="logo__box"></div>
+<section class="section-box">
+  <h1>회원가입</h1>
+  <hr />
+  <form
+    id="FormRegistration"
+    class="common-form"
+    action="/auth/join"
+    method="POST"
+  >
+    <ul class="common-form__list">
+      <li>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="이메일"
+        />
+      </li>
+      <li>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder="비밀번호"
+          onkeyup="keyCheck()"
+        />
+      </li>
+      <li>
+        <input
+          type="password"
+          id="password-check"
+          name="password-check"
+          required
+          placeholder="비밀번호 확인"
+          onkeyup="keyCheck()"
+        />
+      </li>
+    </ul>
+    <span id="validText">비밀번호가 일치하지 않습니다.</span>
+    <button type="submit" class="common-form__submit" onclick="submitCheck()">
+      가입
+    </button>
+    <p>추가입력(선택)</p>
+    <ul class="common-form__list">
+      <li>
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" placeholder="이름" />
+      </li>
+      <li>
+        <label for="phone">전화번호</label>
+        <input type="text" id="phone" name="phone" placeholder="전화번호" />
+      </li>
+      <li>
+        <label for="직업">직업</label>
+        <input type="text" id="job" name="job" placeholder="직업" />
+      </li>
+    </ul>
+  </form>
+</section>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/join.js"></script>
+{% endblock %}

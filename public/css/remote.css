@@ -1,0 +1,9 @@
+.remote {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+}
+
+.remote span {
+  font-size: 2em;
+}

@@ -1,0 +1,64 @@
+.logo__box {
+  width: 200px;
+  height: 15vh;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.logo__box img {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.section-box {
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 1em;
+}
+.common-form {
+  margin: 5px 0;
+}
+.section-box > h1 {
+  font-size: 2rem;
+}
+.common-form__list input {
+  width: 100%;
+  font-size: 1.5rem;
+  margin: 5px 0;
+  border: none;
+  background-color: lightgray;
+  padding: 10px;
+}
+.common-form__submit {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1em;
+  border: none;
+  background-color: #d9e1c8;
+  color: black;
+  margin: 5px 0;
+}
+.common-form__submit:hover {
+  cursor: pointer;
+  background-color: rgb(161, 201, 161);
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.common-button {
+  width: 48%;
+  border: none;
+  text-align: center;
+  padding: 5px;
+  background-color: #d9e1c8;
+  color: black;
+}
+
+.common-button:hover {
+  background-color: #b6bda9;
+}
+
+.common-form {
+  text-align: left;
+}
