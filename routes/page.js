@@ -1,5 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const {Team, Project, User} = require('./../models');
 // const { Post, User, Hashtag } = require('../models');
 
 const router = express.Router();
@@ -18,14 +19,22 @@ router.use((req, res, next) => {
 // });
 
 router.get('/', async (req, res, next) => {
-  try {
+  try{
+    let teams = await Team.findAll();
+    console.log(teams);
+    let members = Array();
+    for(let i = 0; i < teams.length; i++){
+      members[i] = await teams[i].getMembers();
+      teams[i].members = members[i];
+    }
     res.render('main', {
-      title: 'SITE MAKER',
+      title: 'main',
+      teams,
     });
-  } catch (err) {
+  } catch(err){
     console.error(err);
     next(err);
-  }
+  }  
 });
 
 router.get('/login', async (req, res, next) => {
@@ -60,6 +69,27 @@ router.get('/join', isNotLoggedIn, async (req, res, next) => {
     next(err);
   }
 });
+
+router.get('/project_list', isLoggedIn, async (req, res, next) => {
+  try {
+    const projects = await Project.findAll({
+      where:{
+        UserId: req.user.id
+      }
+    });
+    console.log(projects);
+
+    res.render('project_list', {
+      title : '프로젝트 목록',
+      projects,
+    })
+  } catch(err){
+    console.error(err);
+    next(err);
+  }
+});
+
+
 
 // router.get('/hashtag', async (req, res, next) => {
 //   const query = req.query.hashtag;

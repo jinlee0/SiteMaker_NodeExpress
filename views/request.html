@@ -2,46 +2,46 @@
 <!---->
 {% block content %}
 <div class="request-box">
-  <form class="request-form" action="index.html">
+  <form class="request-form" action="request/" method="POST">
     <fieldset>
       <legend>개인정보</legend>
       <ul>
         <li>
-          <label for="user-name">이름(회사명)<span>(*)</span></label>
+          <label for="requestName">이름(회사명)<span>(*)</span></label>
           <input
             type="text"
-            name="user-name"
-            id="user-name"
+            name="requestName"
+            id="requestName"
             value="{{user.name}}"
             required
           />
         </li>
         <li>
-          <label for="phone">연락처<span>(*)</span></label>
+          <label for="requestPhone">연락처<span>(*)</span></label>
           <input
             type="text"
-            name="phone"
-            id="phone"
+            name="requestPhone"
+            id="requestPhone"
             value="{{user.phone}}"
             required
           />
         </li>
         <li>
-          <label for="email">이메일<span>(*)</span></label>
+          <label for="requestEmail">이메일<span>(*)</span></label>
           <input
-            type="text"
-            name="email"
-            id="email"
+            type="email"
+            name="requestEmail"
+            id="requestEmail"
             value="{{user.email}}"
             required
           />
         </li>
         <li>
-          <label for="job">직업<span>(*)</span></label>
+          <label for="requestJob">직업<span>(*)</span></label>
           <input
             type="text"
-            name="job"
-            id="job"
+            name="requestJob"
+            id="requestJob"
             value="{{user.job}}"
             required
           />
@@ -53,40 +53,50 @@
       <ul>
         <li>
           <label for="site-type">유형</label>
-          <input type="text" list="types" />
-          <datalist id="types">
+          <input name="type" type="text" list="type" />
+          <datalist id="type">
             <option value="개발"></option>
             <option value="창작"></option>
             <option value="예술"></option>
             <option value="디자인"></option>
             <option value="건축"></option>
             <option value="문학"></option>
+            <option value="기타"></option>
           </datalist>
           <label for="deadline">마감 기한<span>(*)</span></label>
-          <input type="text" list="deadline" required />
-          <datalist id="deadline">
-            <option value="3일 이내"></option>
-            <option value="5일 이내"></option>
-            <option value="1주일 이내"></option>
-            <option value="2주일 이내"></option>
-            <option value="한 달 이내"></option>
-            <option value="한 달 이상(기한 없음)"></option>
-          </datalist>
+          <input name="deadline" type="date" required />
+
           <label for="estimate">예상 금액(단위: 만원)</label>
-          <input type="text" name="estimate" id="estimate" />
+          <input type="number" min="0" name="estimate" id="estimate" />
         </li>
         <li>
-          <label for="sample-urls">참고 사이트 url</label>
+          <label for="urlSamples">참고 사이트 url</label>
           <input
             type="text"
-            name="sample-urls"
-            id="sample-urls"
+            name="urlSamples"
+            id="urlSamples"
             class="big-area"
           />
         </li>
         <li>
-          <label for="etc">기타 요구 사항</label>
-          <input type="text" name="etc" id="etc" class="big-area" />
+          <label for="etcRequirements">기타 요구 사항</label>
+          <input
+            type="text"
+            name="etcRequirements"
+            id="etcRequirements"
+            class="big-area"
+          />
+        </li>
+        <li>
+          <label for="canvas">사인</label>
+          <canvas
+            id="canvas"
+            style="background-color: aliceblue"
+            width="300"
+            height="300"
+          >
+            캔버스 사용 불가
+          </canvas>
         </li>
       </ul>
     </fieldset>
@@ -248,4 +258,57 @@
   <p>Copyright(C) 이진용. All rights reserved</p>
   <p>사무실 : 경기도 남양주시 다산지금로 16번길 56(Tel:010-0123-4567)</p>
 </footer>
+{% endblock %} {% block script %}
+<script>
+  var canvas, context;
+  window.onload = init;
+  function init() {
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
+
+    context.lineWidth = 2;
+    context.strokeStyle = "blue";
+
+    canvas.addEventListener("mousemove", move);
+    canvas.addEventListener("mousedown", down);
+    canvas.addEventListener("mouseup", up);
+    canvas.addEventListener("mouseout", out);
+  }
+
+  var startX = 0,
+    startY = 0;
+  var dragging = false;
+
+  function draw(curX, curY) {
+    context.beginPath();
+    context.moveTo(startX, startY);
+    context.lineTo(curX, curY);
+    context.stroke();
+  }
+
+  function down(e) {
+    startX = e.offsetX;
+    startY = e.offsetY;
+    dragging = true;
+  }
+
+  function up(e) {
+    dragging = false;
+  }
+
+  function move(e) {
+    if (!dragging) {
+      return;
+    }
+    var curX = e.offsetX;
+    var curY = e.offsetY;
+    draw(curX, curY);
+    startX = curX;
+    startY = curY;
+  }
+
+  function out(e) {
+    dragging = false;
+  }
+</script>
 {% endblock %}

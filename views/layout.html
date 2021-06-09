@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="css/main-init.css" />
     <link rel="stylesheet" href="css/css-init.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/main-content.css" />
@@ -13,29 +12,30 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/request.css" />
     <link rel="stylesheet" href="css/box.css" />
-    <style></style>
+    <link rel="stylesheet" href="css/slider.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/slider.js"></script>
   </head>
   <body>
     <header id="top_header">
-      <a href="index.html"><h1>site-maker</h1></a>
+      <a href="/"><h1>site-maker</h1></a>
       <nav id="fixed_nav">
         <ul>
-          <li><a href="#content-main">HOME</a></li>
+          <li><a href="/">HOME</a></li>
           <li><a href="/request">의뢰하기</a></li>
-          <li><a href="#dummy">소개</a></li>
-          <li><a href="#dummy">요금</a></li>
         </ul>
         <div id="navbox"></div>
         {% if user and user.id %}
-        <ul>
-          <li><a href="#">내 정보</a></li>
-        </ul>
         <!--로그인된 경우-->
+        <ul>
+          <li><a href="#">{{user.name}}</a></li>
+          <li><a href="/project_list">프로젝트</a></li>
+          <li><a href="/auth/logout">로그아웃</a></li>
+        </ul>
         {% else %}
         <ul>
           <li><a href="/login">로그인</a></li>
           <li><a href="/join">회원가입</a></li>
-          <li><a href="#">계정찾기</a></li>
         </ul>
         {% endif %}
       </nav>
@@ -43,5 +43,7 @@
 
     <div class="headbox"></div>
     {% block content %} {% endblock %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {% block script %} {% endblock %}
   </body>
 </html>

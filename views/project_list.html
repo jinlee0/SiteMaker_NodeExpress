@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+<!---->
+{% block content %}
+<div class="logo__box"></div>
+<div class="simple_table_box">
+  {% if projects %}
+  <table class="simple_table">
+    <caption>
+      의뢰 내역
+    </caption>
+    <thead>
+      <tr>
+        <th>프로젝트 번호</th>
+        <th>프로젝트명</th>
+        <th>의뢰자</th>
+        <th>기한</th>
+        <th>확정여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in projects %}
+      <tr>
+        <td class="projectId">{{project.id}}</td>
+        <td>{{project.name}}</td>
+        <td>{{project.requestName}}</td>
+        <td>{{project.deadline}}</td>
+        <td class="confirmCell">{{project.complete}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endblock %} {% block script %}
+<script>
+  window.onload = () => {
+    const confirmCells = document.getElementsByClassName("confirmCell");
+
+    for (let i = 0; i < confirmCells.length; i++) {
+      if (confirmCells[i].innerHTML === "false") {
+        const str = `<button type="text" class="confirmButton">확정</button>`;
+        confirmCells[i].innerHTML = str;
+      } else if (confirmCells[i].innerHTML === "true") {
+        confirmCells[i].innerHTML = "완료";
+      }
+    }
+
+    const confirmButtons = document.getElementsByClassName("confirmButton");
+    const projectIds = document.getElementsByClassName("projectId");
+    for (let i = 0; i < confirmCells.length; i++) {
+      confirmCells[i].firstChild.onclick = () => {
+        console.log(projectIds[i].innerHTML);
+        confirmProject(confirmCells[i], projectIds[i].innerHTML);
+      };
+    }
+  };
+
+  function confirmProject(parent, projectId) {
+    axios
+      .post("/request/confirm", { projectId: projectId })
+      .then((res) => {
+        console.log("success");
+        parent.innerHTML = `완료`;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+</script>
+{% endblock %}

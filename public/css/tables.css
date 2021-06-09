@@ -55,3 +55,31 @@
   width: 60%;
   border-radius: 10px;
 }
+
+.member-table td:nth-child(2) p {
+  min-width: 200px;
+}
+
+.simple_table_box {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.simple_table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.simple_table th {
+  border-bottom: 2px solid blue;
+}
+.simple_table tr {
+  border-bottom: 1px solid lightslategray;
+}
+.simple_table td {
+  padding: 10px;
+}
+.simple_table caption {
+  margin: 10px;
+}
